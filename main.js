@@ -1,6 +1,6 @@
 // You can just require "electron" but if you require
 // "electron/main" you get typings.
-const { app, BrowserWindow } = require('electron/main')
+const { app, BrowserWindow, ipcMain } = require('electron/main')
 
 const path = require('node:path')
 
@@ -17,6 +17,7 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
+  ipcMain.handle('ping', () => 'pong')
   createWindow()
 
   // If the app is still running without any windows open
